@@ -20,7 +20,6 @@
     <PackageReference Include="Microsoft.Azure.CognitiveServices.Search.ImageSearch" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
     <Folder Include="Resources\Fonts\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Models\" />

@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:d="http://xamarin.com/schemas/2014/forms/design" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:effect="clr-namespace:TravelMonkey.Effects" mc:Ignorable="d" x:Class="TravelMonkey.Views.MainPage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:d="http://xamarin.com/schemas/2014/forms/design" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:effect="clr-namespace:TravelMonkey.Effects"
+             xmlns:ic="clr-namespace:TravelMonkey.Resources;assembly=TravelMonkey"
+             mc:Ignorable="d" x:Class="TravelMonkey.Views.MainPage">
     <ScrollView>
         <StackLayout BackgroundColor="White">
             <!-- Hero image -->
@@ -24,7 +26,7 @@
                             <StackLayout.Effects>
                                 <effect:SafeAreaPaddingEffect />
                             </StackLayout.Effects>
-                            <StackLayout Margin="20,0,20,0" Spacing="0">
+                            <StackLayout Spacing="0">
                                 <StackLayout.Margin>
                                     <OnPlatform x:TypeArguments="Thickness">
                                         <On Platform="iOS" Value="20,0,20,0" />
@@ -34,7 +36,7 @@
                                 <Label TextColor="#fff" FontFamily="LatoBlack" FontSize="22" Text="Hi there," />
                                 <Label TextColor="#fff" FontFamily="LatoBlack" FontSize="22" Text="Where do you want to go?" />
                             </StackLayout>
-                            <Label Text="" FontSize="24" Margin="0,0,20,0" HorizontalOptions="EndAndExpand" VerticalOptions="Center" FontFamily="FontAwesomeSolid" TextColor="#fff">
+                            <Label Text="{x:Static ic:FontAwesomeSolid.Info}" FontSize="24" Margin="0,0,20,0" HorizontalOptions="EndAndExpand" VerticalOptions="Center" FontFamily="FontAwesomeSolid" TextColor="#fff">
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding OpenUrlCommand}" CommandParameter="{Binding CurrentDestination.MoreInfoUrl}" />
                                 </Label.GestureRecognizers>
@@ -44,7 +46,7 @@
                         <!-- Translate -->
                         <yummy:PancakeView Margin="20,0" HeightRequest="50" BackgroundColor="#99ffffff" CornerRadius="8" VerticalOptions="Start" HorizontalOptions="FillAndExpand">
                             <StackLayout Orientation="Horizontal" VerticalOptions="Center" Margin="20,0">
-                                <Label FontSize="20" VerticalOptions="Center" TextColor="Gray" FontFamily="FontAwesomeSolid" Text="" Margin="0,0,12,0" />
+                                <Label FontSize="20" VerticalOptions="Center" TextColor="Gray" FontFamily="FontAwesomeSolid" Text="{x:Static ic:FontAwesomeSolid.Language}" Margin="0,0,12,0" />
                                 <Entry x:Name="TranslateTextEntry" FontFamily="LatoRegular" TextColor="Black" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Completed="Entry_Completed" Placeholder="Need to translate something?" PlaceholderColor="Gray" />
                             </StackLayout>
                         </yummy:PancakeView>
