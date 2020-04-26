@@ -34,11 +34,9 @@ namespace TravelMonkey.Droid.Services
                     await _recognizer.StartContinuousRecognitionAsync();
                 IsTranscribing = !IsTranscribing;
             }
-            catch (Exception e)
+            catch
             {
                 IsTranscribing = false;
-                Console.WriteLine(e);
-                Debugger.Break();
             }
         }
     }

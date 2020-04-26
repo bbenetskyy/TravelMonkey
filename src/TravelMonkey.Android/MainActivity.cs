@@ -16,6 +16,8 @@ namespace TravelMonkey.Droid
 
             base.OnCreate(savedInstanceState);
 
+            global::Xamarin.Forms.Forms.SetFlags("IndicatorView_Experimental");
+
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             Acr.UserDialogs.UserDialogs.Init(this);

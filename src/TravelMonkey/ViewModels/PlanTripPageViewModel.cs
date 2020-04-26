@@ -59,12 +59,15 @@ namespace TravelMonkey.ViewModels
             ListenStatus = ListenStatus.Processing;
             Country = country;
 
-            Sightseeing.Clear();
             var sightseeing = await _bingSearchService.GetByCountry(country);
-            foreach (var sightsee in sightseeing)
+            await Device.InvokeOnMainThreadAsync(() =>
             {
-                Sightseeing.Add(sightsee);
-            }
+                Sightseeing.Clear();
+                foreach (var sightsee in sightseeing)
+                {
+                    Sightseeing.Add(sightsee);
+                }
+            });
 
             ListenStatus = ListenStatus.Default;
         }

@@ -54,7 +54,7 @@
                             <Span
                                 FontFamily="LatoBold"
                                 FontSize="18"
-                                Text="  What Country do you want to visit?" />
+                                Text="  What Place do you want to visit?" />
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
@@ -90,6 +90,27 @@
                     FontSize="14"
                     Text="{Binding Country, StringFormat='Sightsee in {0}'}"
                     TextColor="Gray" />
+                <!--  Search Results  -->
+                <CarouselView
+                    HeightRequest="350"
+                    IndicatorView="SightseeIndicator"
+                    ItemsSource="{Binding Sightseeing}">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <Image
+                                Aspect="AspectFill"
+                                HorizontalOptions="FillAndExpand"
+                                Opacity="0.7"
+                                Source="{Binding ImageUrl}"
+                                VerticalOptions="FillAndExpand" />
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+                <IndicatorView
+                    x:Name="SightseeIndicator"
+                    HorizontalOptions="Center"
+                    IndicatorColor="LightGray"
+                    SelectedIndicatorColor="DarkGray" />
             </StackLayout>
         </yummy:PancakeView>
     </ContentPage.Content>
