@@ -69,10 +69,10 @@
                     <BoxView
                         BackgroundColor="{Binding ListenStatus, Converter={StaticResource ListenStatusToColor}, ConverterParameter={Binding ListenStatus}}}"
                         CornerRadius="40"
-                        HeightRequest="45"
+                        HeightRequest="44"
                         HorizontalOptions="Center"
                         VerticalOptions="Center"
-                        WidthRequest="145" />
+                        WidthRequest="144" />
                     <Button
                         BackgroundColor="Transparent"
                         Command="{Binding SpeakCommand}"
