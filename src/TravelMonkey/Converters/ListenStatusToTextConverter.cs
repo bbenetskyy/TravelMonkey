@@ -1,25 +1,25 @@
-using System;
+﻿using System;
 using System.Globalization;
 using TravelMonkey.Models;
 using Xamarin.Forms;
 
 namespace TravelMonkey.Converters
 {
-    public class ListenStatusToColorConverter : IValueConverter
+    public class ListenStatusToTextConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (!Enum.TryParse<ListenStatus>(value.ToString(), true, out var status))
-                return Color.Black;
+                return "Tap and Speak";
 
             switch (status)
             {
                 case ListenStatus.Default:
-                    return Color.Black;
+                    return "Tap and Speak";
                 case ListenStatus.Listening:
-                    return Color.MediumSeaGreen;
+                    return "Listening";
                 case ListenStatus.Processing:
-                    return Color.DodgerBlue;
+                    return "Processing";
                 default:
                     throw new ArgumentOutOfRangeException();
             }

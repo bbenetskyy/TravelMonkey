@@ -48,5 +48,42 @@ namespace TravelMonkey.Services
                 };
             }
         }
+
+        public async Task<List<Destination>> GetByCountry(string country)
+        {
+            try
+            {
+                var client = new ImageSearchClient(new ApiKeyServiceClientCredentials(ApiKeys.BingImageSearch));
+
+                var resultDestinations = new List<Destination>();
+
+                    var result = await client.Images.SearchAsync($"Sightsee in {country}", minWidth: 500, minHeight: 500, imageType: "Photo", license: "Public", count: 10, maxHeight: 1200, maxWidth: 1200);
+
+                    var randomIdx = _randomResultIndex.Next(result.Value.Count);
+
+                foreach (var item in result.Value)
+                {
+                    resultDestinations.Add(new Destination
+                    {
+                        Title = item.AlternateName,
+                        ImageUrl = item.ContentUrl,
+                        MoreInfoUrl = item.HostPageUrl
+                    });
+                }
+
+                return resultDestinations;
+            }
+            catch
+            {
+                return new List<Destination> {
+                    new Destination
+                    {
+                        Title = "Something went wrong :( Here is a cat instead!",
+                        ImageUrl = "https://cataas.com/cat",
+                        MoreInfoUrl = "https://cataas.com/"
+                    }
+                };
+            }
+        }
     }
 }

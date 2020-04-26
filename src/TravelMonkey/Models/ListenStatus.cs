@@ -3,7 +3,7 @@ namespace TravelMonkey.Models
     public enum ListenStatus
     {
         Default,
-        Listen,
+        Listening,
         Processing
     }
 }

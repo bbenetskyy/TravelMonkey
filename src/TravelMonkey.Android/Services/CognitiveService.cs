@@ -10,7 +10,7 @@ namespace TravelMonkey.Droid.Services
     {
         private readonly SpeechRecognizer _recognizer;
 
-        private bool _isTranscribing;
+        public bool IsTranscribing { get; private set; }
 
         public event EventHandler<string> TextRecognized;
 
@@ -24,21 +24,22 @@ namespace TravelMonkey.Droid.Services
 
         private void OnTextRecognized(string text) => TextRecognized?.Invoke(this, text);
 
-        public Task ListenAndTranscribe()
+        public async Task ListenAndTranscribe()
         {
             try
             {
-                return _isTranscribing
-                    ? _recognizer.StopContinuousRecognitionAsync()
-                    : _recognizer.StartContinuousRecognitionAsync();
+                if (IsTranscribing)
+                    await _recognizer.StopContinuousRecognitionAsync();
+                else
+                    await _recognizer.StartContinuousRecognitionAsync();
+                IsTranscribing = !IsTranscribing;
             }
             catch (Exception e)
             {
+                IsTranscribing = false;
                 Console.WriteLine(e);
                 Debugger.Break();
             }
-
-            return Task.CompletedTask;
         }
     }
 }

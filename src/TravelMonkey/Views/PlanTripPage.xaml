@@ -1,77 +1,95 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             xmlns:ic="clr-namespace:TravelMonkey.Resources;assembly=TravelMonkey"
-             mc:Ignorable="d"
-             x:Class="TravelMonkey.Views.PlanTripPage">
+<ContentPage
+    x:Class="TravelMonkey.Views.PlanTripPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:TravelMonkey.Converters"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:ic="clr-namespace:TravelMonkey.Resources;assembly=TravelMonkey"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    mc:Ignorable="d">
+    <ContentPage.Resources>
+        <converters:ListenStatusToColorConverter x:Key="ListenStatusToColor" />
+        <converters:ListenStatusToTextConverter x:Key="ListenStatusToText" />
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <yummy:PancakeView >
+        <yummy:PancakeView>
             <yummy:PancakeView.BackgroundGradientStops>
                 <yummy:GradientStopCollection>
-                    <yummy:GradientStop Color="Transparent" Offset="0" />
-                    <yummy:GradientStop Color="#a29efa" Offset="1" />
+                    <yummy:GradientStop Offset="0" Color="Transparent" />
+                    <yummy:GradientStop Offset="1" Color="#a29efa" />
                 </yummy:GradientStopCollection>
             </yummy:PancakeView.BackgroundGradientStops>
-               <StackLayout Spacing="15" Margin="15">
-                   <!--Close Button-->
-                   <yummy:PancakeView HorizontalOptions="Center"
-                                      VerticalOptions="Start"
-                                      BackgroundGradientAngle="90"
-                                      CornerRadius="40">
-                       <yummy:PancakeView.BackgroundGradientStops>
-                           <yummy:GradientStopCollection>
-                               <yummy:GradientStop Color="#CA3992" Offset="0" />
-                               <yummy:GradientStop Color="#0B056E" Offset="1" />
-                           </yummy:GradientStopCollection>
-                       </yummy:PancakeView.BackgroundGradientStops>
-                       <Button HorizontalOptions="Center"
-                               BackgroundColor="Transparent"
-                               TextColor="White"
-                               FontFamily="LatoRegular"
-                               Text="Close"
-                               Clicked="Close_Clicked"/>
-                    </yummy:PancakeView>
-                   <!-- Country Question-->
-                   <Label>
-                       <Label.FormattedText>
-                           <FormattedString>
-                               <Span  Text="{x:Static ic:FontAwesomeSolid.Globe}"
-                                      FontSize="20"
-                                      TextColor="#CA3992"
-                                      FontFamily="FontAwesomeSolid"/>
-                               <Span Text="  What Country do you want to visit?"
-                                     FontSize="18"
-                                     FontFamily="LatoBold"/>
+            <StackLayout Margin="15" Spacing="15">
+                <!--  Close Button  -->
+                <yummy:PancakeView
+                    BackgroundGradientAngle="90"
+                    CornerRadius="40"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Start">
+                    <yummy:PancakeView.BackgroundGradientStops>
+                        <yummy:GradientStopCollection>
+                            <yummy:GradientStop Offset="0" Color="#CA3992" />
+                            <yummy:GradientStop Offset="1" Color="#0B056E" />
+                        </yummy:GradientStopCollection>
+                    </yummy:PancakeView.BackgroundGradientStops>
+                    <Button
+                        BackgroundColor="Transparent"
+                        Clicked="Close_Clicked"
+                        FontFamily="LatoRegular"
+                        HorizontalOptions="Center"
+                        Text="Close"
+                        TextColor="White" />
+                </yummy:PancakeView>
+                <!--  Country Question  -->
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span
+                                FontFamily="FontAwesomeSolid"
+                                FontSize="20"
+                                Text="{x:Static ic:FontAwesomeSolid.Globe}"
+                                TextColor="#CA3992" />
+                            <Span
+                                FontFamily="LatoBold"
+                                FontSize="18"
+                                Text="  What Country do you want to visit?" />
                         </FormattedString>
-                       </Label.FormattedText>
-                   </Label>
-                   <!--Tap to listen button-->
-                   <Grid>
-                       <BoxView CornerRadius="40"
-                                HeightRequest="50"
-                                WidthRequest="150"
-                                HorizontalOptions="Center"
-                                BackgroundColor="#CA3992"/>
-                       <BoxView CornerRadius="40"
-                                HeightRequest="45"
-                                WidthRequest="145"
-                                HorizontalOptions="Center"
-                                VerticalOptions="Center"
-                                BackgroundColor="{Binding ListenStatus, Converter=ListenStatusToColor}"/>
-                       <Button Text="Tap & Speak"
-                                HorizontalOptions="Center"
-                                WidthRequest="150"
-                                VerticalOptions="Center"
-                                BackgroundColor="Transparent"
-                                FontFamily="LatoRegular"
-                                Command="{Binding SpeakCommand}"
-                                TextColor="White"/>
-                   </Grid>
-                   <!--Entered Text-->
-                   <Label />
+                    </Label.FormattedText>
+                </Label>
+                <!--  Tap to listen button  -->
+                <Grid>
+                    <BoxView
+                        BackgroundColor="#CA3992"
+                        CornerRadius="40"
+                        HeightRequest="50"
+                        HorizontalOptions="Center"
+                        WidthRequest="150" />
+                    <BoxView
+                        BackgroundColor="{Binding ListenStatus, Converter={StaticResource ListenStatusToColor}, ConverterParameter={Binding ListenStatus}}}"
+                        CornerRadius="40"
+                        HeightRequest="45"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        WidthRequest="145" />
+                    <Button
+                        BackgroundColor="Transparent"
+                        Command="{Binding SpeakCommand}"
+                        FontFamily="LatoRegular"
+                        HorizontalOptions="Center"
+                        Text="{Binding ListenStatus, Converter={StaticResource ListenStatusToText}, ConverterParameter={Binding ListenStatus}}"
+                        TextColor="White"
+                        VerticalOptions="Center"
+                        WidthRequest="150" />
+                </Grid>
+                <!--  Entered Text  -->
+                <Label
+                    Margin="0,15"
+                    FontFamily="LatoBold"
+                    FontSize="14"
+                    Text="{Binding Country, StringFormat='Sightsee in {0}'}"
+                    TextColor="Gray" />
             </StackLayout>
         </yummy:PancakeView>
     </ContentPage.Content>
