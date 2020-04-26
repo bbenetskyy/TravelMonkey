@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using TravelMonkey.ViewModels;
 using Xamarin.Forms;
 
@@ -47,5 +48,7 @@ namespace TravelMonkey.Views
             await Navigation.PushModalAsync(new TranslationResultPage(TranslateTextEntry.Text));
             TranslateTextEntry.Text = "";
         }
+
+        private void PlanTrip_Clicked(object sender, EventArgs e) => Navigation.PushModalAsync(new PlanTripPage());
     }
 }

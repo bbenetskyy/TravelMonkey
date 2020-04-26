@@ -51,18 +51,36 @@
                             </StackLayout>
                         </yummy:PancakeView>
                     </StackLayout>
-                    <yummy:PancakeView HeightRequest="100" BackgroundColor="#aaeeeeee" CornerRadius="20,0,0,40" HorizontalOptions="FillAndExpand" VerticalOptions="End">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <StackLayout Grid.Column="0" Margin="20,0,0,0" Spacing="0" VerticalOptions="Center">
-                                <Label Text="{Binding CurrentDestination.Title}" FontSize="24" FontFamily="LatoBold" TextColor="Black" />
-                                <Label Text="Recommendation" TextColor="#666" FontSize="16" FontFamily="LatoRegular" />
-                            </StackLayout>
-                        </Grid>
-                    </yummy:PancakeView>
+
+                    <StackLayout HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="End">
+                        <yummy:PancakeView
+                            CornerRadius="25"
+                            HeightRequest="40"
+                            WidthRequest="150"
+                            BorderColor="White"
+                            BorderThickness="5"
+                            HorizontalOptions="End"
+                            BackgroundColor="Black">
+
+                            <Button Text="Plan your trip"
+                                    TextColor="White"
+                                    BackgroundColor="Transparent"
+                                    Clicked="PlanTrip_Clicked"/>
+                        </yummy:PancakeView>
+                        <yummy:PancakeView HeightRequest="100" BackgroundColor="#aaeeeeee"  CornerRadius="20,0,0,40" >
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <StackLayout Grid.Column="0" Margin="20,0,0,0" Spacing="0"  VerticalOptions="Center">
+                                    <Label Text="{Binding CurrentDestination.Title}"    FontSize="24" FontFamily="LatoBold" TextColor="Black" />
+                                    <Label Text="Recommendation" TextColor="#666" FontSize="16"  FontFamily="LatoRegular" />
+                                </StackLayout>
+                            </Grid>
+                        </yummy:PancakeView>
+                    </StackLayout>
                 </Grid>
             </yummy:PancakeView>
 

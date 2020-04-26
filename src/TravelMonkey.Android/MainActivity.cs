@@ -1,7 +1,8 @@
-﻿using Android.App;
+using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
+using TravelMonkey.Droid.Services;
 
 namespace TravelMonkey.Droid
 {
@@ -18,6 +19,8 @@ namespace TravelMonkey.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             Acr.UserDialogs.UserDialogs.Init(this);
+
+            Xamarin.Forms.DependencyService.Register<CognitiveService>();
 
             LoadApplication(new App());
         }
