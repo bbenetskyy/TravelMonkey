@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Timers;
 using TravelMonkey.Data;
 using TravelMonkey.Models;
+using TravelMonkey.Views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -54,7 +55,7 @@ namespace TravelMonkey.ViewModels
         public void StartSlideShow()
         {
             _slideShowTimer.Start();
-            
+
         }
         public void StopSlideShow()
         {

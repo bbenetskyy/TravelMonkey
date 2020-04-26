@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TravelMonkey.Views.PlanTripPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:TravelMonkey.Converters"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:ic="clr-namespace:TravelMonkey.Resources;assembly=TravelMonkey"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    mc:Ignorable="d">
+    <ContentPage.Resources>
+        <converters:ListenStatusToColorConverter x:Key="ListenStatusToColor" />
+        <converters:ListenStatusToTextConverter x:Key="ListenStatusToText" />
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <yummy:PancakeView>
+            <yummy:PancakeView.BackgroundGradientStops>
+                <yummy:GradientStopCollection>
+                    <yummy:GradientStop Offset="0" Color="Transparent" />
+                    <yummy:GradientStop Offset="1" Color="#a29efa" />
+                </yummy:GradientStopCollection>
+            </yummy:PancakeView.BackgroundGradientStops>
+            <StackLayout Margin="15" Spacing="15">
+                <!--  Close Button  -->
+                <yummy:PancakeView
+                    BackgroundGradientAngle="90"
+                    CornerRadius="40"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Start">
+                    <yummy:PancakeView.BackgroundGradientStops>
+                        <yummy:GradientStopCollection>
+                            <yummy:GradientStop Offset="0" Color="#CA3992" />
+                            <yummy:GradientStop Offset="1" Color="#0B056E" />
+                        </yummy:GradientStopCollection>
+                    </yummy:PancakeView.BackgroundGradientStops>
+                    <Button
+                        BackgroundColor="Transparent"
+                        Clicked="Close_Clicked"
+                        FontFamily="LatoRegular"
+                        HorizontalOptions="Center"
+                        Text="Close"
+                        TextColor="White" />
+                </yummy:PancakeView>
+                <!--  Country Question  -->
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span
+                                FontFamily="FontAwesomeSolid"
+                                FontSize="20"
+                                Text="{x:Static ic:FontAwesomeSolid.Globe}"
+                                TextColor="#CA3992" />
+                            <Span
+                                FontFamily="LatoBold"
+                                FontSize="18"
+                                Text="  What Place do you want to visit?" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <!--  Tap to listen button  -->
+                <Grid>
+                    <BoxView
+                        BackgroundColor="#CA3992"
+                        CornerRadius="40"
+                        HeightRequest="50"
+                        HorizontalOptions="Center"
+                        WidthRequest="150" />
+                    <BoxView
+                        BackgroundColor="{Binding ListenStatus, Converter={StaticResource ListenStatusToColor}, ConverterParameter={Binding ListenStatus}}}"
+                        CornerRadius="40"
+                        HeightRequest="44"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        WidthRequest="144" />
+                    <Button
+                        BackgroundColor="Transparent"
+                        Command="{Binding SpeakCommand}"
+                        FontFamily="LatoRegular"
+                        HorizontalOptions="Center"
+                        Text="{Binding ListenStatus, Converter={StaticResource ListenStatusToText}, ConverterParameter={Binding ListenStatus}}"
+                        TextColor="White"
+                        VerticalOptions="Center"
+                        WidthRequest="150" />
+                </Grid>
+                <!--  Entered Text  -->
+                <Label
+                    Margin="0,15"
+                    FontFamily="LatoBold"
+                    FontSize="14"
+                    Text="{Binding Country, StringFormat='Sightsee in {0}'}"
+                    TextColor="Gray" />
+                <!--  Search Results  -->
+                <CarouselView
+                    HeightRequest="350"
+                    IndicatorView="SightseeIndicator"
+                    ItemsSource="{Binding Sightseeing}">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <Image
+                                Aspect="AspectFill"
+                                HorizontalOptions="FillAndExpand"
+                                Opacity="0.7"
+                                Source="{Binding ImageUrl}"
+                                VerticalOptions="FillAndExpand" />
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+                <IndicatorView
+                    x:Name="SightseeIndicator"
+                    HorizontalOptions="Center"
+                    IndicatorColor="LightGray"
+                    SelectedIndicatorColor="DarkGray" />
+            </StackLayout>
+        </yummy:PancakeView>
+    </ContentPage.Content>
+</ContentPage>
